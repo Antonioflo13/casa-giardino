@@ -16,9 +16,6 @@ interface navbar {
 
 const Header = (): JSX.Element => {
   //STATE
-  const uiConfigs: { primary: string; secondary: string } = useSelector(
-    (state: { uiConfigs: {} }) => state.uiConfigs
-  );
   const navbar: navbar = useSelector(
     (state: { navbarItems: { navbarItems: {} } }) =>
       state.navbarItems.navbarItems
@@ -26,13 +23,7 @@ const Header = (): JSX.Element => {
 
   return (
     <header>
-      <div
-        style={{
-          backgroundColor: `${uiConfigs.primary}`,
-          color: `${uiConfigs.secondary}`,
-        }}
-        className="navbar"
-      >
+      <div className="navbar bg-prim text-sec">
         <div className="flex-1">
           <a className="btn btn-ghost normal-case text-xl">
             {navbar.companyName}

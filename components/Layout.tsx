@@ -15,16 +15,34 @@ import Footer from "@/components/ui/Footer";
 const Layout = ({ children }: { children: React.ReactNode }): JSX.Element => {
   //STORE
   const dispatch = useDispatch();
+
+  //FUNCTIONS
+  const handle = async () => {
+    let navbar = await getNavbar();
+    const uiConfig = await getUiConfigs();
+    setGlobalVariable(uiConfig);
+    dispatch(setUiConfigs(uiConfig));
+    dispatch(setNavbarItems(navbar));
+  };
+
   //EFFECT
   useEffect(() => {
     handle();
   }, []);
 
-  const handle = async () => {
-    let navbar = await getNavbar();
-    const uiConfig = await getUiConfigs();
-    dispatch(setUiConfigs(uiConfig));
-    dispatch(setNavbarItems(navbar));
+  const setGlobalVariable = (uiConfig: {
+    data: {
+      uiConfig: { primary: { hex: string }; secondary: { hex: string } };
+    };
+  }) => {
+    const myVariables = {
+      "--primary": uiConfig.data.uiConfig.primary.hex,
+      "--secondary": uiConfig.data.uiConfig.secondary.hex,
+    };
+    const root: HTMLElement | null = document.querySelector(":root");
+    Object.entries(myVariables).forEach((v) =>
+      root?.style.setProperty(v[0], v[1])
+    );
   };
   return (
     <>
