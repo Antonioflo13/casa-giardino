@@ -25,7 +25,7 @@ const Layout = ({ children }: { children: React.ReactNode }): JSX.Element => {
     dispatch(setNavbarItems(navbar));
   };
 
-  //EFFECT
+  //EFFEC
   useEffect(() => {
     handle();
   }, []);
