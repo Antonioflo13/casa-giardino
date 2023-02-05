@@ -10,6 +10,7 @@ async function getUiConfigs() {
     secondary {
       hex
     }
+    headerSticky
   }
 }
   `;

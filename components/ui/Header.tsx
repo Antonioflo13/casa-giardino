@@ -1,28 +1,19 @@
 //STORE
 import { useSelector } from "react-redux";
-
-interface navbar {
-  logo: { url: string };
-  navbarItems: [
-    {
-      id: number;
-      name: string;
-      handle: string;
-      subItem: [{ id: number; name: string; handle: string }];
-    }
-  ];
-  companyName: string;
-}
+//INTERFACES
+import { uiConfigs } from "@/interfaces/uiConfigs";
+import { navbar } from "@/interfaces/navbar";
 
 const Header = (): JSX.Element => {
   //STATE
-  const navbar: navbar = useSelector(
-    (state: { navbarItems: { navbarItems: {} } }) =>
-      state.navbarItems.navbarItems
+  const uiConfigs: uiConfigs = useSelector(
+    (state: { uiConfigs: uiConfigs }) => state.uiConfigs
   );
-
+  const navbar: navbar = useSelector(
+    (state: { navbar: navbar }) => state.navbar
+  );
   return (
-    <header>
+    <header className={uiConfigs.headerSticky ? "fixed top-0 w-full" : ""}>
       <div className="navbar bg-prim text-sec">
         <div className="flex-1">
           <a className="btn btn-ghost normal-case text-xl">
@@ -49,7 +40,7 @@ const Header = (): JSX.Element => {
                     )}
                   </a>
                   {navbarItem.subItem.length > 0 && (
-                    <ul className="p-2 bg-primary">
+                    <ul className="p-2 bg-prim">
                       {navbarItem.subItem.map((subItem) => (
                         <li key={subItem.id}>
                           <a>{subItem.name}</a>

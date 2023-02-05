@@ -5,14 +5,16 @@ export const uiConfigs = createSlice({
   initialState: {
     primary: "",
     secondary: "",
+    headerSticky: false,
   },
   reducers: {
     setUiConfigs: (
-      state: { primary: string; secondary: string },
+      state: { primary: string; secondary: string; headerSticky: boolean },
       action: any
     ) => {
       state.primary = action.payload.data.uiConfig.primary.hex;
       state.secondary = action.payload.data.uiConfig.secondary.hex;
+      state.headerSticky = action.payload.data.uiConfig.headerSticky;
     },
   },
 });

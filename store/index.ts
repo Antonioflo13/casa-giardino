@@ -6,7 +6,8 @@ import { persistReducer, persistStore } from "redux-persist";
 import thunk from "redux-thunk";
 //REDUCERS
 import uiConfigsReducer from "@/store/slices/uiConfigs";
-import navbarItemsReducer from "@/store/slices/navbarItems";
+import navbarItemsReducer from "@/store/slices/navbar";
+import mainReducer from "@/store/slices/main";
 
 const persistConfig = {
   key: "root",
@@ -15,7 +16,8 @@ const persistConfig = {
 
 const rootReducer = combineReducers({
   uiConfigs: uiConfigsReducer,
-  navbarItems: navbarItemsReducer,
+  navbar: navbarItemsReducer,
+  mainSlice: mainReducer,
 });
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);

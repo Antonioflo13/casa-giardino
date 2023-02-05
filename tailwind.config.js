@@ -14,7 +14,11 @@ module.exports = {
       prim: "var(--primary)",
       sec: "var(--secondary)",
     },
-    extend: {},
+    extend: {
+      backgroundImage: () => ({
+        main: "var(--bg-main)",
+      }),
+    },
   },
   plugins: [require("@tailwindcss/typography"), require("daisyui")],
   daisyui: {
